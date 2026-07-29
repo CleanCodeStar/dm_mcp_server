@@ -19,7 +19,7 @@ def read_requirements():
 
 setup(
     name="dm-mcp-server",
-    version="2.6.2",
+    version="2.6.3",
     author="CleanCode",
     author_email="15706058532@163.com",
     description="达梦数据库 Model Context Protocol (MCP) 服务器",

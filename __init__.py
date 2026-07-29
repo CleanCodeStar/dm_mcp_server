@@ -7,10 +7,10 @@
 提供完整的达梦数据库操作功能。
 
 Author: CleanCode
-Version: 2.6.4
+Version: 2.6.5
 """
 
-__version__ = "2.6.4"
+__version__ = "2.6.5"
 __author__ = "CleanCode"
 __email__ = "15706058532@163.com"
 __description__ = "达梦数据库 Model Context Protocol (MCP) 服务器"

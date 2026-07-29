@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dm-mcp-server"
-version = "2.6.3"
+version = "2.6.4"
 description = "达梦数据库 Model Context Protocol (MCP) 服务器"
 readme = "README.md"
 license = "MIT"

@@ -14,7 +14,7 @@
   - 自动拦截跨模式 (Cross-Schema) 访问尝试。
   - 禁止在元数据查询中尝试过滤非本模式的信息。
   - SQL 注入风险模式检测（多语句注入、注释注入、存储过程调用等）。
-  - 精细化 DDL/DCL 权限控制（允许表/索引管理，拦截 TRUNCATE/GRANT/REVOKE 等危险操作）。
+  - 精细化 DDL/DCL 权限控制（允许表/索引/序列/视图管理，拦截权限变更和其他未授权 DDL）。
 - 🔀 **多 Schema 支持**: 支持配置多个允许的 Schema，可在允许范围内自由切换。
 - 🔒 **只读模式**: 可选开启只读模式，禁止所有写操作（INSERT/UPDATE/DELETE/DDL）。
 - 📄 **分页查询**: `execute_sql` 支持 `limit` / `offset` 参数，避免大数据量一次性返回。
@@ -119,8 +119,8 @@ $env:DAMENG_HOST="192.168.x.x"; $env:DAMENG_USER="SYSDBA"; $env:DAMENG_PASSWORD=
 - **元数据保护**: 在查询 `ALL_TABLES` 等系统视图时，如果检测到试图查询非允许模式的 `OWNER`，将直接拦截。
 - **只读模式**: 开启后，仅允许 `SELECT`、`WITH`、`EXPLAIN`、`SHOW`、`DESCRIBE` 等查询语句，禁止所有写操作和 DDL。
 - **DDL/DCL 精细化控制** (v2.6.1+):
-  - **允许**: `CREATE TABLE`、`ALTER TABLE`、`DROP TABLE`、`CREATE INDEX`、`ALTER INDEX`、`DROP INDEX`、`RENAME`、`COMMENT ON`、`TRUNCATE`。
-  - **拦截**: `GRANT`/`REVOKE`（权限变更）、`CREATE VIEW/PROCEDURE` 等非 TABLE/INDEX 类型的 DDL。
+  - **允许**: `CREATE`、`ALTER`、`DROP` 的 `TABLE`、`INDEX`、`SEQUENCE`、`VIEW`，以及 `RENAME`、`COMMENT ON`、`TRUNCATE`。
+  - **拦截**: `GRANT`/`REVOKE`（权限变更）、`PROCEDURE` 及其他未列入白名单的 DDL。
   - **智能识别**: 正确区分 SQL 字符串值中的关键词与实际 DDL/DCL 语句，INSERT/UPDATE 中包含如 `'DROP TABLE x'` 的字符串值不会被误拦截。
 
 ## 在 Cursor / Claude Desktop / Antigravity / Trae 中配置
